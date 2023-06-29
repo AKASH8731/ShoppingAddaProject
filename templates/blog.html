@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- inner page banner -->
+<div class="section inner_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <h3>Blogs</h3>
+                    <ul class="breadcrum">
+                        <li>
+                            <a href="{% url 'home_page' %}">Home</a>
+                        </li>
+                        <li>&gt;</li>
+                        <li>Blogs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end inner page banner -->
+<!-- process section -->
+<div class="section layout_padding_2 light_silver border_bottom_light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="full">
+                    <div class="process_blog">
+                        <div class="step_no">
+                            <p>1</p>
+                        </div>
+                        <div class="step_infor">
+                            <p class="step_head">Select Any Item</p>
+                            <p class="step_cont">Browse &amp; Select</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="full">
+                    <div class="process_blog">
+                        <div class="step_no">
+                            <p>2</p>
+                        </div>
+                        <div class="step_infor">
+                            <p class="step_head">Fast Payment</p>
+                            <p class="step_cont">Easy Payment Options</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="full">
+                    <div class="process_blog">
+                        <div class="step_no">
+                            <p>3</p>
+                        </div>
+                        <div class="step_infor">
+                            <p class="step_head">Delivery</p>
+                            <p class="step_cont">24 Hours Delivery</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="full">
+                    <div class="process_blog">
+                        <div class="step_no">
+                            <p>4</p>
+                        </div>
+                        <div class="step_infor">
+                            <p class="step_head">Got Your Item</p>
+                            <p class="step_cont">Thank you..!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end process section -->
+<!-- section -->
+<div class="section layout_padding border_bottom_light blog_section">
+    <div class="container">
+        <div class="row">
+            <!-- blog section -->
+            {% for blog in blog %}
+            <div class="col-md-6 blog_layout margin_bottom_30_all">
+                <div class="blog_inner blog_list">
+                    <div class="blog_featured_img">
+                        <img class="img-responsive" src="{{ blog.image.url }}" alt="#">
+                        <div class="post_information">
+                            <div class="post_info_inner">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-clock-o"></i>
+                                        <a href="#"> {{blog.date_time}}</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-user"></i>
+                                        <a href="#"> Admin</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="post_shr">
+                                <div class="item-actions">
+                                    <div class="share-button-list">
+                                        <span class="icon icon-share2"></span>
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-google-plus"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-pinterest-p"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog_featured_cont">
+                        <h3>{{blog.title|title}}</h3>
+                        <h6 class="post_author_name">Posted by- {{blog.author|title}}</h6>
+                        <p>{{blog.description}}</p>
+                        <div class="bottom_section">
+                            <a class="main_bt" href="{% url 'blog_details' blog_details_slug=blog.slug %}">Read More &gt;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- end blog section -->
+        </div>
+    </div>
+</div>
+<!-- end section -->
+{% endblock content %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- inner page banner -->
+<div class="section inner_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <h3>Product Category</h3>
+                    <ul class="breadcrum">
+                        <li>
+                            <a href="{% url 'home_page' %}">Home</a>
+                        </li>
+                        <li>&gt;</li>
+                        <li>Products</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end inner page banner -->
+<!-- section -->
+<div id="content-page" class="section main-content-box">
+    <div class="container-fluid limit-box">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="right-product-box">
+                    <div class="row no-gutters list-top-bar">
+                        <div class=" col-12  text-center text-sm-right">
+                            <div class="toolbar-sorter-right d-md-flex align-items-center">
+                                <span>Sort by</span>
+                                <select class="wide">
+                                    <option data-display="Select">Nothing</option>
+                                    <option value="1">Popularity</option>
+                                    <option value="2">High Price → High Price</option>
+                                    <option value="3">Low Price → High Price</option>
+                                    <option value="4">Best Selling</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters main-categorie">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                <div class="row">
+                                    {% if products %}
+                           {% for product in products %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                                        <div class="product-item-info">
+                                            <div class="product-item-photo">
+                                                <div class="item-gallery">
+                                                    <a href="{% url 'ProductDetails' product.slug %}">
+                                                        <img src="{{product.cover_image.url}}" alt="no image" style="height: 350px;">
+                                                    </a>
+                                                    <div class="bot-line-new">
+                                                        <span>{{product.product_category.name}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-item-details">
+                                                <div class="product_cont">
+                                                    <p class="info_pr">{{product.product_category|title}}</p>
+                                                    <h3>{{product.name|title}}</h3>
+                                                    <p class="price_tag">
+                                                        ₹{{product.price}}
+                                                        <span class="old_price">₹2500</span>
+                                                    </p>
+                                                    <div class="bottom_bt_pr" style="width:30em">
+                                                        <a class="bt_pro" href="{% url 'ProductDetails' product.slug %}">View Product</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                           {% else %}
+                                    <div class="alert alert-info">🤦‍♀️🤦‍♀️Products Not Found🤷‍♂️🤷‍♂️</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
